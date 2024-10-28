@@ -264,7 +264,7 @@ const ProductDetails = () => {
 
     const calculatePercentage = (totalRating, starWiseRating) => {
         const percentage = (starWiseRating * 100) / totalRating;
-        console.log(percentage)
+      
         return percentage;
     };
 
@@ -1137,3 +1137,14 @@ const ProductDetails = () => {
 };
 
 export default ProductDetails;
+
+// {(product?.variants[0]?.price && product?.variants[0]?.discounted_price !== 0 && product?.variants[0]?.price !== product?.variants[0]?.discounted_price) && (
+//     <span className="discoutPercentage" style={{ fontSize: "1.4rem" }}>
+//         ({Math.round(((product.variants[0].price - product.variants[0].discounted_price) / product.variants[0].price) * 100)}% OFF)
+//     </span>
+// )}
+
+
+{/* <span className='bg-dark' id="pos" style={{ background: url, padding: "5px", color: 'white', postion: "fixed !important", color: "white", top: "0", zIndex: "1000" }}><span className='h3'>120%</span><br />
+<span className='h2'> Off</span></span>
+<span className='border border-light rounded-circle' id='aiEye'> */}

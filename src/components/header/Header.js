@@ -726,11 +726,11 @@ const Header = () => {
                                                             <span className="visually-hidden">unread messages</span>
                                                         </span>
                                                         : null} */}
-                                                    {console.log("total products", cart?.cartProducts)}
+                                                    
                                                     {/* TODO: */}
                                                     {cart?.cartProducts?.length !== 0 ?
                                                         <span className="position-absolute start-100 translate-middle badge rounded-pill fs-5">
-                                                            {console.log("total products", cart?.cartProducts)}
+                                                        
                                                             {cart?.cartProducts?.length != 0 ? cart?.cartProducts?.length : null}
                                                             <span className="visually-hidden">unread messages</span>
                                                         </span>

@@ -357,9 +357,12 @@ a:focus .product-card {
   background: var(--second-cards-color);
   border-radius: 5px;
 }
-
+#pos{
+  position: fixed !important;
+}
 .product-card .image-container img {
   height: auto;
+  z-index: 0;
   width: 100%;
   /* padding: 15px; */
   aspect-ratio: 3/3;

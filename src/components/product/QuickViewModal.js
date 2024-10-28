@@ -672,3 +672,30 @@ const QuickViewModal = (props) => {
 };
 
 export default QuickViewModal;
+
+
+// {product?.variants[0]?.price &&
+//     product?.variants[0]?.discounted_price !== 0 &&
+//     product?.variants[0]?.price !== product?.variants[0]?.discounted_price && (
+//         <div className="discount-info d-flex flex-row align-items-center ms-2 mt-4"  >
+//             {/* Discount percentage */}
+//             <span   style={{
+// /* border: '1px solid rgb(255, 77, 77)', */
+// backgroundImage: 'url("https://cdn.zeptonow.com/web-static-assets-prod/artifacts/12.7.2/images/offer-tag.svg")',
+// /* backgroundColor: 'rgb(255, 240, 240)', */
+// fontSize: '1rem',
+// backgroundRepeat: 'no-repeat',
+// color: '#fff',
+// /* right: 'unset', */
+// position: 'fixed',
+// left: '8%',
+// top: '0%'
+// }}  className="discounted-price rounded-circle d-flex align-items-center justify-content-center me-1 font-bold"
+               
+//             >
+//                 {Math.round(((product.variants[0].price - product.variants[0].discounted_price) / product.variants[0].price) * 100)}%Off
+//             </span>
+          
+//         </div>
+
+//     )}

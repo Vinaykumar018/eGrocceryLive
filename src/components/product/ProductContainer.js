@@ -366,7 +366,7 @@
 //                                                     </div>
 //                                                     <div>
 //                                                         {/* {console.log(section)} */}
-// <Link type="button" class="btn btn-outline-success "  to="/products" onClick={() => {
+// <Link type="button" className="btn btn-outline-success "  to="/products" onClick={() => {
 //     dispatch(setFilterSection({ data: section.id }));
 //     navigate('/products');
 
@@ -719,7 +719,7 @@ const ProductContainer = React.memo(({ showModal, setShowModal, BelowSectionOffe
     const navigate = useNavigate();
 
     const { width } = useWindowSize();
-   
+
     const { t } = useTranslation();
     const swiperRef = useRef(null);  // Ref for Swiper instance
     const [swiperInstance, setSwiperInstance] = useState(null); // Swiper instance state
@@ -742,7 +742,7 @@ const ProductContainer = React.memo(({ showModal, setShowModal, BelowSectionOffe
     const [offerConatiner, setOfferContainer] = useState(0);
     const [variant_index, setVariantIndex] = useState(null);
     const [isNetworkError, setIsNetworkError] = useState(false);
-    const[favoriteData,setFavouriteData]=useState(true);
+    const [favoriteData, setFavouriteData] = useState(true);
 
 
 
@@ -841,31 +841,31 @@ const ProductContainer = React.memo(({ showModal, setShowModal, BelowSectionOffe
                 }
             });
     };
-    console.log(favorite)
+
     //Add to favorite
     const addToFavorite = async (product_id) => {
         navigate("/")
-                await api.addToFavotite(user?.jwtToken, product_id)
-                    .then(response => response.json())
-                    .then(async (result) => {
-                        if (result.status === 1) {
-                            // toast.success(result.message);
-        
-                            // Ensure favorite.favouriteProductIds is an array before spreading
-                            const updatedFavouriteProducts = [
-                                ...(Array.isArray(favorite?.favouriteProductIds) ? favorite.favouriteProductIds : []),
-                                product_id
-                            ];
-        
-                            dispatch(setFavouriteProductIds({ data: updatedFavouriteProducts }));
-        
-                            const updatedFavouriteLength = (favorite?.favouritelength || 0) + 1;
-                            dispatch(setFavouriteLength({ data: updatedFavouriteLength }));
-                        } else {
-                            toast.error(result.message);
-                        }
-                    });
-            };
+        await api.addToFavotite(user?.jwtToken, product_id)
+            .then(response => response.json())
+            .then(async (result) => {
+                if (result.status === 1) {
+                    // toast.success(result.message);
+
+                    // Ensure favorite.favouriteProductIds is an array before spreading
+                    const updatedFavouriteProducts = [
+                        ...(Array.isArray(favorite?.favouriteProductIds) ? favorite.favouriteProductIds : []),
+                        product_id
+                    ];
+
+                    dispatch(setFavouriteProductIds({ data: updatedFavouriteProducts }));
+
+                    const updatedFavouriteLength = (favorite?.favouritelength || 0) + 1;
+                    dispatch(setFavouriteLength({ data: updatedFavouriteLength }));
+                } else {
+                    toast.error(result.message);
+                }
+            });
+    };
 
 
 
@@ -1071,10 +1071,10 @@ const ProductContainer = React.memo(({ showModal, setShowModal, BelowSectionOffe
                 console.warn("User token or city data is not available.");
             }
         };
-    
+
         fetchFavorites();
     }, [user, city]); // Add dependencies to re-run the effect when user or city changes
-    
+
 
     return (
         <section id="products">
@@ -1101,7 +1101,7 @@ const ProductContainer = React.memo(({ showModal, setShowModal, BelowSectionOffe
                                                     </div>
                                                     <div>
                                                         {/* {console.log(section)} */}
-                                                        <Link type="button" class="btn btn-outline-success " to="/products" onClick={() => {
+                                                        <Link type="button" className="btn btn-outline-success " to="/products" onClick={() => {
                                                             dispatch(setFilterSection({ data: section.id }));
                                                             navigate('/products');
 
@@ -1114,259 +1114,297 @@ const ProductContainer = React.memo(({ showModal, setShowModal, BelowSectionOffe
                                                 </div>
                                                 <div className="product_section_content p-0" style={{ zIndex: 1 }}>
 
-                                                
+
                                                     <Swiper style={{ zIndex: 1 }}
 
 
                                                         //  ref={swiperRef}  // Assign Swiper reference                                                    spaceBetween={5}
-                                                            //  ref={swiperRef}  // Assign Swiper reference                                                    spaceBetween={5}
-                                                    slidesPerView={6}
-                                                    spaceBetween={0}
-                                                    navigation={{
-                                                        prevEl: '.swiper-button-prev',
-                                                        nextEl: '.swiper-button-next',
-                                                    }}
-                                                    modules={[Autoplay, Navigation]}
-                                                    autoplay={{
-                                                        delay: 60000000,
-                                                        disableOnInteraction: false,
-                                                        pauseOnMouseEnter: true// Allows autoplay after interaction
-                                                    }}
-                                                    //  onSwiper={setSwiperInstance} // Set swiper instance when it's initialized
-                                                    breakpoints={{
-                                                        224: { slidesPerView: 2 },
-                                                        332: { slidesPerView: 2 },
-                                                        472: { slidesPerView: 3 },
-                                                        768: { slidesPerView: 4 },
-                                                        1024: { slidesPerView: 5 },
-                                                        1336: { slidesPerView: 6 },
-                                                    }}
-                                                >
-                                                  {width > 1024 ? (
-<FaCircleChevronLeft className="swiper-button-prev medium" size={40} />) : null}                                                    {section?.products?.map((product, index) => (
-                                                        <div className="row" key={index}>
-                                                            <div className="col-md-12">
-                                                                <SwiperSlide className='product-card swiper-slide-card' style={{ padding: "5px" }}>
+                                                        //  ref={swiperRef}  // Assign Swiper reference                                                    spaceBetween={5}
+                                                        slidesPerView={6}
+                                                        spaceBetween={0}
+                                                        navigation={{
+                                                            prevEl: '.swiper-button-prev',
+                                                            nextEl: '.swiper-button-next',
+                                                        }}
+                                                        modules={[Autoplay, Navigation]}
+                                                        autoplay={{
+                                                            delay: 60000000,
+                                                            disableOnInteraction: false,
+                                                            pauseOnMouseEnter: true// Allows autoplay after interaction
+                                                        }}
+                                                        //  onSwiper={setSwiperInstance} // Set swiper instance when it's initialized
+                                                        breakpoints={{
+                                                            224: { slidesPerView: 2 },
+                                                            332: { slidesPerView: 2 },
+                                                            472: { slidesPerView: 3 },
+                                                            768: { slidesPerView: 4 },
+                                                            1024: { slidesPerView: 5 },
+                                                            1336: { slidesPerView: 6 },
+                                                        }}
+                                                    >
+                                                        {width > 1024 ? (
+                                                            <FaCircleChevronLeft className="swiper-button-prev medium" size={40} />) : null}                                                    {section?.products?.map((product, index) => (
+                                                                <div className="row" key={index}>
+                                                                    <div className="col-md-12">
+                                                                        <SwiperSlide className='product-card swiper-slide-card' style={{ padding: "5px" }}>
 
 
-                                                                    <span className='border border-light rounded-circle' id='aiEye'>
-                                                                        <AiOutlineEye
-                                                                            onClick={() => {
-                                                                                setselectedProduct(product); setShowModal(true);
-                                                                                setP_id(product.id); setP_V_id(product.variants[0].id); setQnty(product.variants[0].cart_count + 1);
-                                                                            }}
-                                                                        />
-                                                                    </span>
-                                                                    <Link to={`/product/${product.slug}`} onClick={() => {
-                                                                        dispatch(setSelectedProduct({ data: product?.id }));
-                                                                    }} className='text-decoration-none text-reset'>
-
-                                                                        <div className='image-container' style={{ textAlign: 'center', padding: '20px' }}>
-                                                                            {/* <img onLoadStart={(e) => { e.target.src = setting.setting?.web_logo; }} onError={placeHolderImage} src={product.image_url} alt={product.slug} className={`card-img-top`} loading='lazy' /> */}
-                                                                            <ImageWithPlaceholder src={product.image_url} alt={product.slug} className={`card-img-top`} style={{ maxWidth: '100%', height: 'auto', margin: '0 auto', display: 'block' }} />
-                                                                            {!Number(product.is_unlimited_stock) && parseInt(product.variants[0].status) === 0 &&
-                                                                                <div className="out_of_stockOverlay">
-                                                                                    <p className="out_of_stockText">{t("out_of_stock")}</p>
-                                                                                </div>
-                                                                            }
-                                                                        </div>
-                                                                    </Link>
-                                                                    {/* {console.log(product)} */}
-                                                                    <div className='d-flex flex-row product-card-footer'>
-                                                                        <div>
-                                                                            <button
-                                                                                key={product.id}
-                                                                                type="button"
-                                                                                className={`w-100 h-100 favouriteBtn px-3 border border-light rounded-circle ${favorite?.favorite?.data?.some(item => item.id === product.id) ? 'text-danger' : ''}`}
-
-                                                                                onClick={() => {
-                                                                                    if (user?.jwtToken !== "") {
-                                                                                        addToFavorite(product.id);
-                                                                                    } else {
-                                                                                        toast.error(t("required_login_message_for_cart"));
-                                                                                    }
-                                                                                }}>
-                                                                                <BsHeart
-                                                                                    size={16}
-                                                                                    className={favorite?.favorite?.data?.some(item => item.id === product.id) ? 'text-danger' : ''} // Conditionally add text-danger class to the heart icon
-                                                                                />
-                                                                            </button>
-
-                                                                        </div>
-                                                                        <div style={{ flexGrow: "1" }}>
-                                                                            {(cart?.isGuest === false && cart?.cartProducts?.find(prdct => prdct?.product_id == product?.id && prdct?.product_variant_id == product?.variants?.[0]?.id)?.qty > 0) ||
-                                                                                (cart?.isGuest === true && cart?.guestCart?.find(prdct => prdct?.product_id == product?.id && prdct?.product_variant_id == product?.variants?.[0]?.id)?.qty > 0) ? <>
-                                                                                <div id={`input-cart-productdetail`} className="input-to-cart border border-secondary" style={{ background: "white" }}>
-                                                                                    <button type='button' className="wishlist-button" style={{ background: "var(--secondary-color)" }} onClick={() => {
-                                                                                        if (cart?.isGuest) {
-                                                                                            AddToGuestCart(product?.id, product?.variants?.[0]?.id, cart?.guestCart?.find(prdct => prdct.product_id == product.id && prdct.product_variant_id == product.variants[0]?.id)?.qty - 1, 1);
-                                                                                        } else {
-
-                                                                                            if (cart?.cartProducts?.find(prdct => prdct?.product_id == product?.id)?.qty == 1) {
-                                                                                                removefromCart(product.id, product.variants[0].id);
-                                                                                            }
-                                                                                            else {
-                                                                                                addtoCart(product.id, product.variants[0].id, cart?.cartProducts?.find(prdct => prdct?.product_id == product?.id)?.qty - 1);
-                                                                                                // addtoCart(product.id, product.variants[0].id, cart?.cartProducts?.find(prdct => prdct?.product_variant_id == product?.variants[0]?.id)?.qty - 1);
-                                                                                            }
-                                                                                        }
-
-                                                                                    }}><BiMinus size={20} fill='#fff' /></button>
-                                                                                    <div className="quantity-container text-center">
-                                                                                        <input
-                                                                                            type="number"
-                                                                                            min="1"
-
-                                                                                            max={product.variants[0].stock}
-                                                                                            className="quantity-input bg-transparent text-center"
-                                                                                            // value={product.variants[0].cart_count} 
-                                                                                            value={cart?.isGuest === false ? cart?.cartProducts?.find(prdct => prdct?.product_id == product?.id)?.qty : cart?.guestCart?.find(prdct => prdct?.product_id == product?.id)?.qty}
-                                                                                            disabled
-                                                                                        />
-                                                                                    </div>
-                                                                                    <button type='button' className="wishlist-button" style={{ background: "var(--secondary-color)" }} onClick={() => {
-                                                                                        if (cart?.isGuest) {
-                                                                                            // AddToGuestCart(product?.id, product?.variants?.[0]?.id, cart?.guestCart?.find(prdct => prdct.product_id == product.id && prdct.product_variant_id == product.variants[0]?.id)?.qty + 1, 1);
-
-                                                                                            const productQuantity = getProductQuantities(cart?.guestCart);
-                                                                                            handleValidateAddExistingGuestProduct(
-                                                                                                productQuantity,
-                                                                                                product,
-                                                                                                cart?.guestCart?.find(prdct => prdct?.product_id == product?.id && prdct?.product_variant_id == product?.variants?.[0]?.id)?.qty + 1
-                                                                                            );
-                                                                                        } else {
-                                                                                            const productQuantity = getProductQuantities(cart?.cartProducts);
-                                                                                            handleValidateAddExistingProduct(productQuantity, product);
-                                                                                        }
-                                                                                    }}><BsPlus size={20} fill='#fff' /> </button>
-                                                                                </div>
-                                                                            </> : <>
-                                                                            </>}
-                                                                        </div>
-                                                                        <Dropdown drop="up" className="share">
-                                                                            <Dropdown.Toggle
-                                                                                className='w-100 h-100 shareBtn px-3 border border-light rounded-circle'
-                                                                                style={{ padding: '10px', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                                                                            >
-                                                                                <BsShare size={16} style={{ color: "var(--font-color)" }} />
-                                                                            </Dropdown.Toggle>
-
-                                                                            <Dropdown.Menu style={{ width: "50px", padding: "5px", textAlign: "center", borderRadius: "10px" }} className='hide-pointer drop-menu'>
-                                                                                <Dropdown.Item as="li" style={{ display: 'flex', justifyContent: 'center', borderBottom: "1px var(--font-color)  solid" }}>
-                                                                                    <WhatsappShareButton url={`${setting.setting && setting.setting.web_settings.website_url}product/${product.slug}`}>
-                                                                                        <WhatsappIcon size={30} round />
-                                                                                    </WhatsappShareButton>
-                                                                                </Dropdown.Item>
-                                                                                <Dropdown.Item as="li" style={{ display: 'flex', justifyContent: 'center', borderBottom: "1px var(--font-color)  solid" }}>
-                                                                                    <TelegramShareButton url={`${setting.setting && setting.setting.web_settings.website_url}product/${product.slug}`}>
-                                                                                        <TelegramIcon size={30} round />
-                                                                                    </TelegramShareButton>
-                                                                                </Dropdown.Item>
-                                                                                <Dropdown.Item as="li" style={{ display: 'flex', justifyContent: 'center', borderBottom: "1px var(--font-color)  solid" }}>
-                                                                                    <FacebookShareButton url={`${setting.setting && setting.setting.web_settings.website_url}product/${product.slug}`}>
-                                                                                        <FacebookIcon size={30} round />
-                                                                                    </FacebookShareButton>
-                                                                                </Dropdown.Item>
-                                                                                <Dropdown.Item as="li" style={{ display: 'flex', justifyContent: 'center' }}>
-                                                                                    <button
-                                                                                        type='button'
-                                                                                        onClick={() => {
-                                                                                            navigator.clipboard.writeText(`${setting.setting && setting.setting.web_settings.website_url}product/${product.slug}`);
-                                                                                            toast.success("Copied Successfully!!");
+                                                                            {width < 1024 &&
+                                                                                product?.variants[0]?.price &&
+                                                                                product?.variants[0]?.discounted_price !== 0 &&
+                                                                                product?.variants[0]?.price !== product?.variants[0]?.discounted_price && (
+                                                                                    <span
+                                                                                        className='bg-dark'
+                                                                                        id="pos"
+                                                                                        style={{
+                                                                                            backgroundImage: 'url("https://cdn.zeptonow.com/web-static-assets-prod/artifacts/12.7.2/images/offer-tag.svg")',
+                                                                                            backgroundSize: "contain",
+                                                                                            padding: "5px",
+                                                                                            color: 'white',
+                                                                                            position: "fixed",
+                                                                                            top: "0",
+                                                                                            zIndex: "1000"
                                                                                         }}
-                                                                                        style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}
                                                                                     >
-                                                                                        <BiLink size={18} />
-                                                                                    </button>
-                                                                                </Dropdown.Item>
-                                                                            </Dropdown.Menu>
-                                                                        </Dropdown>
-                                                                    </div>
-
-                                                                    <div className="card-body product-card-body p-3">
-                                                                        {product?.rating_count > 0 ? (
-                                                                            <div className='ratings d-flex align-items-center'>
-                                                                                <LuStar className='me-2' style={{ fill: "#fead0e", stroke: "#fead0e" }} />
-                                                                                <div className='border-end border-2 pe-2 me-2 avgRating'>
-                                                                                    {product?.average_rating?.toFixed(setting.setting && setting.setting.decimal_point)}
-                                                                                </div>
-                                                                                <div>
-                                                                                    {product?.rating_count}
-                                                                                </div>
-                                                                            </div>
-                                                                        ) : null}
-
-                                                                        <h3 className='fw-bold'>{product.name}</h3>
-                                                                        <br/>
-
-                                                                        <div className='price d-flex flex-row mt-1'>
-                                                                            <span id={`price${index}${index0}-section`} className="d-flex align-items-center">
-                                                                                <p id='fa-rupee' className='m-0'>
-                                                                                    {setting.setting && setting.setting.currency}
-                                                                                    {product.variants[0].discounted_price === 0
-                                                                                        ? product.variants[0].price.toFixed(setting.setting && setting.setting.decimal_point)
-                                                                                        : product.variants[0].discounted_price.toFixed(setting.setting && setting.setting.decimal_point)}
-                                                                                </p>
-
-                                                                                {/* Display the original price if there's a discount */}
-                                                                                {(product?.variants[0]?.price && (product?.variants[0]?.discounted_price !== 0)) && (product?.variants[0]?.price !== product?.variants[0]?.discounted_price) ? (
-                                                                                    <span id={`price${index}-section`} className="d-flex align-items-center">
-                                                                                        <p id='relatedproduct-fa-rupee' className='fw-normal text-decoration-line-through m-0' style={{ color: "var(--sub-text-color)", fontSize: "10hpx" }}>
-                                                                                            {setting.setting && setting.setting.currency}
-                                                                                            {product?.variants[0]?.price?.toFixed(setting.setting && setting.setting.decimal_point)}
-                                                                                        </p>
-                                                                                    </span>
-                                                                                ) : null}
-
-                                                                                {/* Calculate and display the discount percentage */}
-                                                                                {(product?.variants[0]?.price && product?.variants[0]?.discounted_price !== 0 && product?.variants[0]?.price !== product?.variants[0]?.discounted_price) && (
-                                                                                    <span className="discoutPercentage" style={{ fontSize: "1.4rem" }}>
-                                                                                        ({Math.round(((product.variants[0].price - product.variants[0].discounted_price) / product.variants[0].price) * 100)}% OFF)
+                                                                                        <span className='h3'>
+                                                                                            {Math.round(((product.variants[0].price - product.variants[0].discounted_price) / product.variants[0].price) * 100)}%
+                                                                                        </span>
+                                                                                        <br />
+                                                                                        <span className='h2'>Off</span>
                                                                                     </span>
                                                                                 )}
+
+                                                                            <span className='border border-light rounded-circle' id='aiEye'></span>
+
+
+                                                                            <span className='border border-light rounded-circle' id='aiEye'>
+                                                                                <AiOutlineEye
+                                                                                    onClick={() => {
+                                                                                        setselectedProduct(product);
+                                                                                        setShowModal(true);
+                                                                                        setP_id(product.id);
+                                                                                        setP_V_id(product.variants[0].id);
+                                                                                        setQnty(product.variants[0].cart_count + 1);
+                                                                                    }}
+                                                                                />
+
+                                                                                {/* Display Discounted Price and Discount Percentage */}
+
                                                                             </span>
-                                                                        </div>
 
-                                                                        {/* New Row for Button */}
-                                                                        <div className="mt-3 priceBtn">
-                                                                            <button
-                                                                                type="button"
-                                                                                id={`Add-to-cart-section${index}${index0}`}
-                                                                                className='w-100 h-100 add-to-cart active'
-                                                                                onClick={() => {
-                                                                                    if (cart?.isGuest) {
-                                                                                        const productQuantity = getProductQuantities(cart?.guestCart);
-                                                                                        handleAddNewProductGuest(productQuantity, product);
-                                                                                    } else if (user?.jwtToken !== "") {
-                                                                                        const productQuantity = getProductQuantities(cart?.cartProducts);
-                                                                                        if ((productQuantity?.find(prdct => prdct?.product_id == product?.id)?.qty || 0) < Number(product.total_allowed_quantity)) {
-                                                                                            addtoCart(product.id, product.variants[0].id, 1);
-                                                                                        } else {
-                                                                                            toast.error(t("out_of_stock_message"));
-                                                                                        }
-                                                                                    } else {
-                                                                                        toast.error(t("required_login_message_for_cartRedirect"));
+                                                                            <Link to={`/product/${product.slug}`} onClick={() => {
+                                                                                dispatch(setSelectedProduct({ data: product?.id }));
+                                                                            }} className='text-decoration-none text-reset'>
+
+                                                                                <div className='image-container' style={{ textAlign: 'center', padding: '20px' }}>
+                                                                                    {/* <img onLoadStart={(e) => { e.target.src = setting.setting?.web_logo; }} onError={placeHolderImage} src={product.image_url} alt={product.slug} className={`card-img-top`} loading='lazy' /> */}
+                                                                                    <ImageWithPlaceholder src={product.image_url} alt={product.slug} className={`card-img-top`} style={{ maxWidth: '100%', height: 'auto', margin: '0 auto', display: 'block' }} />
+                                                                                    {!Number(product.is_unlimited_stock) && parseInt(product.variants[0].status) === 0 &&
+                                                                                        <div className="out_of_stockOverlay">
+                                                                                            <p className="out_of_stockText">{t("out_of_stock")}</p>
+                                                                                        </div>
                                                                                     }
-                                                                                }}
-                                                                                disabled={!Number(product.is_unlimited_stock) && product.variants[0].stock <= 0}
-                                                                            >
-                                                                                {t('ADD')}
-                                                                            </button>
-                                                                        </div>
+                                                                                </div>
+                                                                            </Link>
+                                                                            {/* {console.log(product)} */}
+                                                                            <div className='d-flex flex-row product-card-footer'>
+                                                                                <div>
+                                                                                    <button
+                                                                                        key={product.id}
+                                                                                        type="button"
+                                                                                        className={`w-100 h-100 favouriteBtn px-3 border border-light rounded-circle ${favorite?.favorite?.data?.some(item => item.id === product.id) ? 'text-danger' : ''}`}
+
+                                                                                        onClick={() => {
+                                                                                            if (user?.jwtToken !== "") {
+                                                                                                addToFavorite(product.id);
+                                                                                            } else {
+                                                                                                toast.error(t("required_login_message_for_cart"));
+                                                                                            }
+                                                                                        }}>
+                                                                                        <BsHeart
+                                                                                            size={16}
+                                                                                            className={favorite?.favorite?.data?.some(item => item.id === product.id) ? 'text-danger' : ''} // Conditionally add text-danger class to the heart icon
+                                                                                        />
+                                                                                    </button>
+
+                                                                                </div>
+                                                                                <div style={{ flexGrow: "1" }}>
+                                                                                    {(cart?.isGuest === false && cart?.cartProducts?.find(prdct => prdct?.product_id == product?.id && prdct?.product_variant_id == product?.variants?.[0]?.id)?.qty > 0) ||
+                                                                                        (cart?.isGuest === true && cart?.guestCart?.find(prdct => prdct?.product_id == product?.id && prdct?.product_variant_id == product?.variants?.[0]?.id)?.qty > 0) ? <>
+                                                                                        <div id={`input-cart-productdetail`} className="input-to-cart border border-secondary" style={{ background: "white" }}>
+                                                                                            <button type='button' className="wishlist-button" style={{ background: "var(--secondary-color)" }} onClick={() => {
+                                                                                                if (cart?.isGuest) {
+                                                                                                    AddToGuestCart(product?.id, product?.variants?.[0]?.id, cart?.guestCart?.find(prdct => prdct.product_id == product.id && prdct.product_variant_id == product.variants[0]?.id)?.qty - 1, 1);
+                                                                                                } else {
+
+                                                                                                    if (cart?.cartProducts?.find(prdct => prdct?.product_id == product?.id)?.qty == 1) {
+                                                                                                        removefromCart(product.id, product.variants[0].id);
+                                                                                                    }
+                                                                                                    else {
+                                                                                                        addtoCart(product.id, product.variants[0].id, cart?.cartProducts?.find(prdct => prdct?.product_id == product?.id)?.qty - 1);
+                                                                                                        // addtoCart(product.id, product.variants[0].id, cart?.cartProducts?.find(prdct => prdct?.product_variant_id == product?.variants[0]?.id)?.qty - 1);
+                                                                                                    }
+                                                                                                }
+
+                                                                                            }}><BiMinus size={20} fill='#fff' /></button>
+                                                                                            <div className="quantity-container text-center">
+                                                                                                <input
+                                                                                                    type="number"
+                                                                                                    min="1"
+
+                                                                                                    max={product.variants[0].stock}
+                                                                                                    className="quantity-input bg-transparent text-center"
+                                                                                                    // value={product.variants[0].cart_count} 
+                                                                                                    value={cart?.isGuest === false ? cart?.cartProducts?.find(prdct => prdct?.product_id == product?.id)?.qty : cart?.guestCart?.find(prdct => prdct?.product_id == product?.id)?.qty}
+                                                                                                    disabled
+                                                                                                />
+                                                                                            </div>
+                                                                                            <button type='button' className="wishlist-button" style={{ background: "var(--secondary-color)" }} onClick={() => {
+                                                                                                if (cart?.isGuest) {
+                                                                                                    // AddToGuestCart(product?.id, product?.variants?.[0]?.id, cart?.guestCart?.find(prdct => prdct.product_id == product.id && prdct.product_variant_id == product.variants[0]?.id)?.qty + 1, 1);
+
+                                                                                                    const productQuantity = getProductQuantities(cart?.guestCart);
+                                                                                                    handleValidateAddExistingGuestProduct(
+                                                                                                        productQuantity,
+                                                                                                        product,
+                                                                                                        cart?.guestCart?.find(prdct => prdct?.product_id == product?.id && prdct?.product_variant_id == product?.variants?.[0]?.id)?.qty + 1
+                                                                                                    );
+                                                                                                } else {
+                                                                                                    const productQuantity = getProductQuantities(cart?.cartProducts);
+                                                                                                    handleValidateAddExistingProduct(productQuantity, product);
+                                                                                                }
+                                                                                            }}><BsPlus size={20} fill='#fff' /> </button>
+                                                                                        </div>
+                                                                                    </> : <>
+                                                                                    </>}
+                                                                                </div>
+                                                                                <Dropdown drop="up" className="share">
+                                                                                    <Dropdown.Toggle
+                                                                                        className='w-100 h-100 shareBtn px-3 border border-light rounded-circle'
+                                                                                        style={{ padding: '10px', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                                                                                    >
+                                                                                        <BsShare size={16} style={{ color: "var(--font-color)" }} />
+                                                                                    </Dropdown.Toggle>
+
+                                                                                    <Dropdown.Menu style={{ width: "50px", padding: "5px", textAlign: "center", borderRadius: "10px" }} className='hide-pointer drop-menu'>
+                                                                                        <Dropdown.Item as="li" style={{ display: 'flex', justifyContent: 'center', borderBottom: "1px var(--font-color)  solid" }}>
+                                                                                            <WhatsappShareButton url={`${setting.setting && setting.setting.web_settings.website_url}product/${product.slug}`}>
+                                                                                                <WhatsappIcon size={30} round />
+                                                                                            </WhatsappShareButton>
+                                                                                        </Dropdown.Item>
+                                                                                        {/* <Dropdown.Item as="li" style={{ display: 'flex', justifyContent: 'center', borderBottom: "1px var(--font-color)  solid" }}>
+                                                                                            <TelegramShareButton url={`${setting.setting && setting.setting.web_settings.website_url}product/${product.slug}`}>
+                                                                                                <TelegramIcon size={30} round />
+                                                                                            </TelegramShareButton>
+                                                                                        </Dropdown.Item> */}
+                                                                                        <Dropdown.Item as="li" style={{ display: 'flex', justifyContent: 'center', borderBottom: "1px var(--font-color)  solid" }}>
+                                                                                            <FacebookShareButton url={`${setting.setting && setting.setting.web_settings.website_url}product/${product.slug}`}>
+                                                                                                <FacebookIcon size={30} round />
+                                                                                            </FacebookShareButton>
+                                                                                        </Dropdown.Item>
+                                                                                        <Dropdown.Item as="li" style={{ display: 'flex', justifyContent: 'center' }}>
+                                                                                            <button
+                                                                                                type='button'
+                                                                                                onClick={() => {
+                                                                                                    navigator.clipboard.writeText(`${setting.setting && setting.setting.web_settings.website_url}product/${product.slug}`);
+                                                                                                    toast.success("Copied Successfully!!");
+                                                                                                }}
+                                                                                                style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}
+                                                                                            >
+                                                                                                <BiLink size={18} />
+                                                                                            </button>
+                                                                                        </Dropdown.Item>
+                                                                                    </Dropdown.Menu>
+                                                                                </Dropdown>
+                                                                            </div>
+
+                                                                            <div className="card-body product-card-body p-3">
+                                                                                {product?.rating_count > 0 ? (
+                                                                                    <div className='ratings d-flex align-items-center'>
+                                                                                        <LuStar className='me-2' style={{ fill: "#fead0e", stroke: "#fead0e" }} />
+                                                                                        <div className='border-end border-2 pe-2 me-2 avgRating'>
+                                                                                            {product?.average_rating?.toFixed(setting.setting && setting.setting.decimal_point)}
+                                                                                        </div>
+                                                                                        <div>
+                                                                                            {product?.rating_count}
+                                                                                        </div>
+                                                                                    </div>
+                                                                                ) : null}
+
+                                                                                <h3 className='fw-bold'>{product.name}</h3>
+                                                                                <br />
+
+                                                                                <div className='price d-flex flex-row mt-1'>
+                                                                                    <span id={`price${index}${index0}-section`} className="d-flex align-items-center">
+                                                                                        <p id='fa-rupee' className='m-0'>
+                                                                                            {setting.setting && setting.setting.currency}
+                                                                                            {product.variants[0].discounted_price === 0
+                                                                                                ? product.variants[0].price.toFixed(setting.setting && setting.setting.decimal_point)
+                                                                                                : product.variants[0].discounted_price.toFixed(setting.setting && setting.setting.decimal_point)}
+                                                                                        </p>
+
+                                                                                        {/* Display the original price if there's a discount */}
+                                                                                        {(product?.variants[0]?.price && (product?.variants[0]?.discounted_price !== 0)) && (product?.variants[0]?.price !== product?.variants[0]?.discounted_price) ? (
+                                                                                            <span id={`price${index}-section`} className="d-flex align-items-center">
+                                                                                                <p id='relatedproduct-fa-rupee' className='fw-normal text-decoration-line-through m-0' style={{ color: "var(--sub-text-color)", fontSize: "10hpx" }}>
+                                                                                                    {setting.setting && setting.setting.currency}
+                                                                                                    {product?.variants[0]?.price?.toFixed(setting.setting && setting.setting.decimal_point)}
+                                                                                                </p>
+                                                                                            </span>
+                                                                                        ) : null}
+
+
+                                                                                        {width >= 1024 &&
+                                                                                            product?.variants[0]?.price &&
+                                                                                            product?.variants[0]?.discounted_price !== 0 &&
+                                                                                            product?.variants[0]?.price !== product?.variants[0]?.discounted_price && (
+                                                                                                <span className="discoutPercentage" style={{ fontSize: "1.4rem" }}>
+                                                                                                    ({Math.round(((product.variants[0].price - product.variants[0].discounted_price) / product.variants[0].price) * 100)}% OFF)
+                                                                                                </span>
+                                                                                            )}
+                                                                                    </span>
+                                                                                </div>
+
+                                                                                {/* New Row for Button */}
+                                                                                <div className="mt-3 priceBtn">
+                                                                                    <button
+                                                                                        type="button"
+                                                                                        id={`Add-to-cart-section${index}${index0}`}
+                                                                                        className='w-100 h-100 add-to-cart active'
+                                                                                        onClick={() => {
+                                                                                            if (cart?.isGuest) {
+                                                                                                const productQuantity = getProductQuantities(cart?.guestCart);
+                                                                                                handleAddNewProductGuest(productQuantity, product);
+                                                                                            } else if (user?.jwtToken !== "") {
+                                                                                                const productQuantity = getProductQuantities(cart?.cartProducts);
+                                                                                                if ((productQuantity?.find(prdct => prdct?.product_id == product?.id)?.qty || 0) < Number(product.total_allowed_quantity)) {
+                                                                                                    addtoCart(product.id, product.variants[0].id, 1);
+                                                                                                } else {
+                                                                                                    toast.error(t("out_of_stock_message"));
+                                                                                                }
+                                                                                            } else {
+                                                                                                toast.error(t("required_login_message_for_cartRedirect"));
+                                                                                            }
+                                                                                        }}
+                                                                                        disabled={!Number(product.is_unlimited_stock) && product.variants[0].stock <= 0}
+                                                                                    >
+                                                                                        {t('ADD')}
+                                                                                    </button>
+                                                                                </div>
+                                                                            </div>
+
+
+
+                                                                        </SwiperSlide>
                                                                     </div>
+                                                                </div>
+                                                            ))}
+                                                        {width > 1024 ? (
+                                                            <FaCircleChevronRight className="swiper-button-next" size={40} />
+                                                        ) : null}
 
 
-
-                                                                </SwiperSlide>
-                                                            </div>
-                                                        </div>
-                                                    ))}
-                                                      {width > 1024 ? (
-            <FaCircleChevronRight className="swiper-button-next" size={40} />
-        ) : null}
-
-                                                    
-                                                </Swiper>
+                                                    </Swiper>
                                                 </div>
                                                 <div className="col-1 d-flex align-items-center justify-content-center">
 

@@ -41,7 +41,7 @@ const ProductList2 = React.memo(() => {
 
     const closeCanvas = useRef();
     const category = useSelector(state => state.category?.category);
-    console.log(category)
+    // console.log(category)
     const city = useSelector(state => state.city);
     const filter = useSelector(state => state.productFilter);
     const favorite = useSelector(state => (state.favourite));
@@ -105,8 +105,8 @@ const ProductList2 = React.memo(() => {
         setisLoader(true);
 
         // Log latitude and longitude
-        console.log("Latitude:", city?.city?.latitude);
-        console.log("Longitude:", city?.city?.longitude);
+        // console.log("Latitude:", city?.city?.latitude);
+        // console.log("Longitude:", city?.city?.longitude);
 
         try {
             const response = await api.getProductbyFilter(city?.city?.latitude, city?.city?.longitude, filter, user?.jwtToken);
