@@ -10,8 +10,10 @@ import 'swiper/css/navigation';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FaCircleChevronLeft, FaCircleChevronRight } from "react-icons/fa6";
 import CategoryComponent from '../product/Categories';// Import CategoryComponent
+import { useWindowSize } from 'react-use';
 
 const DisplayByCategories = () => {
+    const { width } = useWindowSize();
     const { t } = useTranslation();
     const shop = useSelector(state => state.shop);
     const categories = shop?.shop?.categories || [];
@@ -44,6 +46,7 @@ const DisplayByCategories = () => {
             <div className="row">
                 {/* Left Navigation */}
                 <div className="col-1 d-flex align-items-center justify-content-center">
+                {width > 1024 ? (
                     <FaCircleChevronLeft 
                         className="swiper-button-prev" 
                         size={40} 
@@ -54,7 +57,7 @@ const DisplayByCategories = () => {
                             color: 'var(--swiper-navigation-color)',
                             cursor: 'pointer',
                         }}
-                    />
+                    />) : null}
                 </div>
 
                 {/* Category Navigation */}
@@ -113,6 +116,7 @@ const DisplayByCategories = () => {
 
                 {/* Right Navigation */}
                 <div className="col-1 d-flex align-items-center justify-content-center">
+                {width > 1024 ? 
                     <FaCircleChevronRight 
                         className="swiper-button-next " 
                         size={40} 
@@ -123,7 +127,7 @@ const DisplayByCategories = () => {
                             color: 'var(--swiper-navigation-color)',
                             cursor: 'pointer',
                         }}
-                    />
+                    />:null }
                 </div>
             </div>
         </div>
