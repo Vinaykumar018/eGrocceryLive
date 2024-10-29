@@ -46,18 +46,18 @@ const DisplayByCategories = () => {
             <div className="row">
                 {/* Left Navigation */}
                 <div className="col-1 d-flex align-items-center justify-content-center">
-                {width > 1024 ? (
-                    <FaCircleChevronLeft 
-                        className="swiper-button-prev" 
-                        size={40} 
-                        style={{
-                            position: 'absolute',
-                            top: '46%',
-                            zIndex: 10,
-                            color: 'var(--swiper-navigation-color)',
-                            cursor: 'pointer',
-                        }}
-                    />) : null}
+                    {width > 1024 ? (
+                        <FaCircleChevronLeft
+                            className="swiper-button-prev"
+                            size={40}
+                            style={{
+                                position: 'absolute',
+                                top: '46%',
+                                zIndex: 10,
+                                color: 'var(--swiper-navigation-color)',
+                                cursor: 'pointer',
+                            }}
+                        />) : null}
                 </div>
 
                 {/* Category Navigation */}
@@ -78,10 +78,10 @@ const DisplayByCategories = () => {
                         }}
                         onSwiper={setSwiperInstance} // Set swiper instance when it's initialized
                         breakpoints={{
-                            540: { slidesPerView: 4},
-                            600: { slidesPerView: 5},
-                          700: { slidesPerView: 5},
-                           800: { slidesPerView: 6 },
+                            540: { slidesPerView: 4 },
+                            600: { slidesPerView: 5 },
+                            700: { slidesPerView: 5 },
+                            800: { slidesPerView: 6 },
                             980: { slidesPerView: 6 },
                             992: { slidesPerView: 7 },
                             1100: { slidesPerView: 8 },
@@ -102,8 +102,8 @@ const DisplayByCategories = () => {
                                     />
                                 </div>
                                 <div className="text-center" >
-                                    <h5 
-                                        className="category-title mr-3" 
+                                    <h5
+                                        className="category-title mr-3"
                                         style={{ color: cssmode.cssmode === 'dark' ? 'white' : 'black' }}
                                     >
                                         {t(category.name)}
@@ -116,18 +116,18 @@ const DisplayByCategories = () => {
 
                 {/* Right Navigation */}
                 <div className="col-1 d-flex align-items-center justify-content-center">
-                {width > 1024 ? 
-                    <FaCircleChevronRight 
-                        className="swiper-button-next " 
-                        size={40} 
-                        style={{
-                            position: 'absolute',
-                            top: '46%',
-                            zIndex: 10,
-                            color: 'var(--swiper-navigation-color)',
-                            cursor: 'pointer',
-                        }}
-                    />:null }
+                    {width > 1024 ?
+                        <FaCircleChevronRight
+                            className="swiper-button-next "
+                            size={40}
+                            style={{
+                                position: 'absolute',
+                                top: '46%',
+                                zIndex: 10,
+                                color: 'var(--swiper-navigation-color)',
+                                cursor: 'pointer',
+                            }}
+                        /> : null}
                 </div>
             </div>
         </div>

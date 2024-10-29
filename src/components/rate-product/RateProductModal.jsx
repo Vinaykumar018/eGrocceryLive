@@ -127,7 +127,7 @@ const RateProductModal = (props) => {
                                     required
                                     name="productReview"
                                     className="reviewTextArea"
-                                    rows={5}
+                                    rows={2}
                                     placeholder={t("write_review_here")}
                                     onChange={handleReviewChange}
                                 />
@@ -160,7 +160,7 @@ const RateProductModal = (props) => {
                             </label>
                         </div>
                         <hr />
-                        <div className="d-flex justify-content-end w-100 mt-3">
+                        <div className="d-flex justify-content-end w-100 mt-1">
                             <button type="submit" className="submitRating">
                                 {t("submit_review")}
                             </button>

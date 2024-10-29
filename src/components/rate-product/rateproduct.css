@@ -1,6 +1,7 @@
 .rateProductModal .modalHeading {
-  font-size: 16px;
-  font-weight: 700;
+  /* font-size: 16px;
+  font-weight: 700; */
+  
 }
 
 .modal-content {
@@ -95,7 +96,9 @@
   cursor: pointer;
 }
 .modalSubHeading {
-  margin-bottom: 16px;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
 }
 .rateProductModal .rateForm .uploadedImages {
   width: 80px;
