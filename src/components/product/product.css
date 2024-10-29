@@ -535,7 +535,7 @@ a:focus .product-card {
 .product-card .product-card-footer button {
   background: none;
   font-size: 1.6rem;
-  padding: 6px;
+  /* padding: 6px; */
 
 }
 
@@ -1507,7 +1507,7 @@ input::placeholder {
 }
 
 .product-details-view .detail-wrapper .bottom-section .input-to-cart button {
-  background: #8b8b8b;
+  background: var(--secondary-color);
   border-radius: 5px;
 }
 

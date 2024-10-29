@@ -636,7 +636,7 @@ const ProductDetails = () => {
                                                                                 <BiMinus fill='#fff' />
                                                                             </button>
 
-                                                                            <span id={`input-quickview`}>
+                                                                            <span id={`input-quickview`} className='text-danger'>
                                                                                 {cartLoader ? <div className="spinner-border text-muted"></div> :
                                                                                     cart?.isGuest === false ?
                                                                                         cart?.cartProducts?.find(prdct => prdct?.product_variant_id == selectedVariant.id)?.qty
