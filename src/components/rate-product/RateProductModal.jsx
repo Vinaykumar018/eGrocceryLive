@@ -120,7 +120,7 @@ const RateProductModal = (props) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="container mt-3">
+                        <div className="container mt-2">
                             <p className="modalSubHeading">{t("product_review")} :</p>
                             <div className="">
                                 <textarea
@@ -133,7 +133,7 @@ const RateProductModal = (props) => {
                                 />
                             </div>
                         </div>
-                        <div className="container mt-3">
+                        <div className="container mt-2">
                             <p className="modalSubHeading">{t("add_photos")}:</p>
                             <div className="d-flex flex-row flex-wrap justify-content-start">
                                 {files?.map((image) => (

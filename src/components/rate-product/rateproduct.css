@@ -61,6 +61,8 @@
   background-color: #55ae7b;
   color: var(--bs-white);
   gap: 4px;
+  /* font-size: 16px;
+  font-weight: 700; */
 }
 .rateProductModal .rateForm .submitRating:hover {
   background-color: var(--secondary-color-dark);
@@ -97,7 +99,7 @@
 }
 .modalSubHeading {
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 580;
   margin-bottom: 8px;
 }
 .rateProductModal .rateForm .uploadedImages {
