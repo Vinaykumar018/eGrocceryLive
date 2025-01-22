@@ -41,6 +41,7 @@ import { AiOutlineEye } from 'react-icons/ai';
 import { IoIosArrowDown } from "react-icons/io";
 import RateProductModal from '../rate-product/RateProductModal';
 
+
 const ProductDetails = () => {
 
     const dispatch = useDispatch();
@@ -80,6 +81,9 @@ const ProductDetails = () => {
     const [showPdtRatingModal, setShowPdtRatingModal] = useState(false);
     const [ratingProductId, setRatingProductId] = useState(0);
 
+    // useEffect(() => {
+    //     window.scrollTo(0, 0);
+    // }, []);
     const getProductDatafromApi = (slug) => {
         if (slug !== null || slug !== undefined) {
             api.getProductbyId(city.city?.latitude ? city.city?.latitude : setting?.setting?.default_city?.latitude, city.city?.longitude ? city.city?.longitude : setting?.setting?.default_city?.longitude, -1, user?.jwtToken, slug)
@@ -111,6 +115,32 @@ const ProductDetails = () => {
 
 
 
+    const promisesData = [
+        {
+            imgSrc: "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/assets/web/blinkit-promises/10_minute_delivery.png",
+            altText: "express delivery",
+            title: "Superfast Delivery",
+            description: "Get your order delivered to your doorstep at the earliest from dark stores near you."
+        },
+        // {
+        //     imgSrc: "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/assets/web/blinkit-promises/Best_Prices_Offers.png",
+        //     altText: "best price",
+        //     title: "Best Prices & Offers",
+        //     description: "Best price destination with offers directly from the manufacturers."
+        // },
+        {
+            imgSrc: "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/assets/web/blinkit-promises/Wide_Assortment.png",
+            altText: "genuine products",
+            title: "Wide Assortment",
+            description: "Choose from 5000+ products across food, personal care, household & other categories."
+        }
+        ,{
+            imgSrc: "https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=90/assets/web/blinkit-promises/Wide_Assortment.png",
+            altText: "genuine products",
+            title: "Wide Assortment",
+            description: "Choose from 5000+ products across food, personal care, household & other categories."
+        }
+    ];
     // Add setting in depedancy array for clear cache
     useEffect(() => {
         if (slug) {
@@ -247,9 +277,9 @@ const ProductDetails = () => {
     //     }
     // }, [productdata, cart]);
 
-    // useEffect(() => {
-    // window.scrollTo({ top: 0, behavior: 'smooth' });
-    // }, [productdata]);
+    useEffect(() => {
+     window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, [productdata]);
 
     const handleVariantChange = (variant, index) => {
         setSelectedVariant(variant);
@@ -264,7 +294,7 @@ const ProductDetails = () => {
 
     const calculatePercentage = (totalRating, starWiseRating) => {
         const percentage = (starWiseRating * 100) / totalRating;
-      
+
         return percentage;
     };
 
@@ -438,33 +468,33 @@ const ProductDetails = () => {
             {loading && <Loader screen="full" background="none" />}
             {!isNetworkError ?
                 <div className='product-details-view product-details-custom'  >
-                   <div id='productListingBreadcrumb' className='w-100 breadCrumbs'>
-    <div className='container d-flex align-items-center gap-2'>
-        <div className='breadCrumbsItem'>
-            <Link to={"/"}>{t("home")}</Link>
-        </div>
-        <div className='breadCrumbsItem'>/</div>
-        <div className='breadCrumbsItem'>
-            {/* Store category_id in sessionStorage and navigate */}
-            <Link to={"/products"}
-                className="breadcrumbLink"
-                onClick={() => {
-                    sessionStorage.setItem('selectedCategoryId', productdata?.category_id);
-                     // Redirect to products page
-                }}
-                style={{ cursor: 'pointer' }}
-            >
-                {productdata?.category_name}
-            </Link>
-        </div>
-        <div className='breadCrumbsItem'>/</div>
-        <div className='breadCrumbsItem'>
-            <Link className={location.pathname.split("/").findIndex(loc => loc === productdata?.slug) !== -1 ? "breadCrumbActive" : ""} to={location?.pathname}>
-                {productdata?.name}
-            </Link>
-        </div>
-    </div>
-</div>
+                    <div id='productListingBreadcrumb' className='w-100 breadCrumbs'>
+                        <div className='container d-flex align-items-center gap-2'>
+                            <div className='breadCrumbsItem'>
+                                <Link to={"/"}>{t("home")}</Link>
+                            </div>
+                            <div className='breadCrumbsItem'>/</div>
+                            <div className='breadCrumbsItem'>
+                                {/* Store category_id in sessionStorage and navigate */}
+                                <Link to={"/products"}
+                                    className="breadcrumbLink"
+                                    onClick={() => {
+                                        sessionStorage.setItem('selectedCategoryId', productdata?.category_id);
+                                        // Redirect to products page
+                                    }}
+                                    style={{ cursor: 'pointer' }}
+                                >
+                                    {productdata?.category_name}
+                                </Link>
+                            </div>
+                            <div className='breadCrumbsItem'>/</div>
+                            <div className='breadCrumbsItem'>
+                                <Link className={location.pathname.split("/").findIndex(loc => loc === productdata?.slug) !== -1 ? "breadCrumbActive" : ""} to={location?.pathname}>
+                                    {productdata?.name}
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
                     <div className='container' style={{ gap: "20px" }}>
                         <div className='top-wrapper'>
 
@@ -555,32 +585,50 @@ const ProductDetails = () => {
                                                         </div>
                                                     )} */}
                                                     <div className='d-flex flex-column gap-2 align-items-start my-1'>
-                                                        <div id="price-section" className='d-flex flex-row gap-2 align-items-center my-1'>
-                                                            {setting.setting && setting.setting.currency}<p id='fa-rupee' className='m-0'>{selectedVariant ? (selectedVariant.discounted_price == 0 ? selectedVariant.price.toFixed(setting.setting && setting.setting.decimal_point) : selectedVariant.discounted_price.toFixed(setting.setting && setting.setting.decimal_point)) : (productdata.variants[0].discounted_price === 0 ? productdata.variants[0].price.toFixed(setting.setting && setting.setting.decimal_point) : productdata.variants[0].discounted_price.toFixed(setting.setting && setting.setting.decimal_point))}</p>
-                                                        </div>
-                                                        {(selectedVariant?.price && (selectedVariant?.discounted_price !== 0)) && (selectedVariant?.price !== selectedVariant?.discounted_price) ?
-                                                            <div>
-                                                                <p className='fw-normal text-decoration-line-through' style={{ color: "var(--sub-text-color)", fontSize: "18px" }}>
+                                                        <div id="price-section" className='d-flex flex-column align-items-start gap-2 my-1'>
+                                                            {/* Price Display with Currency */}
+                                                            <div className='d-flex flex-row align-items-center'>
+                                                                <span className='font-size-common'>
                                                                     {setting.setting && setting.setting.currency}
-                                                                    {selectedVariant?.price?.toFixed(setting.setting && setting.setting.decimal_point)}
+                                                                </span>
+                                                                <p id='fa-rupee' className='m-0'>
+                                                                    {selectedVariant
+                                                                        ? (selectedVariant.discounted_price === 0
+                                                                            ? selectedVariant.price.toFixed(setting.setting?.decimal_point)
+                                                                            : selectedVariant.discounted_price.toFixed(setting.setting?.decimal_point))
+                                                                        : (productdata.variants[0].discounted_price === 0
+                                                                            ? productdata.variants[0].price.toFixed(setting.setting?.decimal_point)
+                                                                            : productdata.variants[0].discounted_price.toFixed(setting.setting?.decimal_point))}
                                                                 </p>
-                                                            </div>
-                                                            : null}
-                                                        {(selectedVariant?.price && selectedVariant?.discounted_price !== 0 && selectedVariant?.price !== selectedVariant?.discounted_price) ?
-                                                            <div>
-
-                                                                {/* Calculate and display discount percentage */}
-                                                                <div className='text-danger fw-bold font-custom'>
-                                                                    {Math.round(((selectedVariant.price - selectedVariant.discounted_price) / selectedVariant.price) * 100)}% off
+                                                                <div className='font-size-common mr-3 ml-1' style={{ fontStyle: 'italic', color: "var(--sub-text-color)" }}>
+                                                                    Inclusive of all taxes
                                                                 </div>
+                                                                {/* Discount Percentage (if applicable) */}
+                                                                {selectedVariant?.price && selectedVariant?.discounted_price !== 0 && selectedVariant?.price !== selectedVariant?.discounted_price && (
+                                                                    <div className='text-danger fw-bold font-custom font-size-common'>
+                                                                        ({Math.round(((selectedVariant.price - selectedVariant.discounted_price) / selectedVariant.price) * 100)}% off)
+                                                                    </div>
+                                                                )}
                                                             </div>
-                                                            : null
-                                                        }
+
+                                                            {/* MRP Display (if applicable) */}
+                                                            {selectedVariant?.price && selectedVariant?.discounted_price !== 0 && selectedVariant?.price !== selectedVariant?.discounted_price && (
+                                                                <div className='fw-normal text-decoration-line-through font-size-common' style={{ color: "var(--sub-text-color)" }}>
+                                                                    <span>{setting.setting && setting.setting.currency}{selectedVariant?.price?.toFixed(setting.setting?.decimal_point)} MRP</span>
+                                                                </div>
+                                                            )}
 
 
 
-                                                        <input type="hidden" id="productdetail-selected-variant-id" name="variant" value={selectedVariant ? selectedVariant.id : productdata.variants[0].id} />
+                                                            {/* Tax Inclusion Note */}
+
+
+                                                            {/* Hidden Input for Selected Variant */}
+                                                            <input type="hidden" id="productdetail-selected-variant-id" name="variant" value={selectedVariant ? selectedVariant.id : productdata.variants[0].id} />
+                                                        </div>
                                                     </div>
+
+
 
                                                 </div>
                                                 <div className='bottom-section'>
@@ -752,10 +800,26 @@ const ProductDetails = () => {
                                                         >
                                                             Rate Product
                                                         </button>
+
                                                     </div>
 
 
+                                                    <div className="share-product-container">
+                                                        <span>{t("share_product")}:</span>
 
+                                                        <ul className='share-product'>
+                                                            <li className='share-product-icon'><WhatsappShareButton url={`${setting.setting && setting.setting.web_settings.website_url}product/${productdata.slug}`}><WhatsappIcon size={32} round={true} /> </WhatsappShareButton></li>
+                                                            <li className='share-product-icon'><TelegramShareButton url={`${setting.setting && setting.setting.web_settings.website_url}product/${productdata.slug}`}><TelegramIcon size={32} round={true} /> </TelegramShareButton></li>
+                                                            <li className='share-product-icon'><FacebookShareButton url={`${setting.setting && setting.setting.web_settings.website_url}product/${productdata.slug}`}><FacebookIcon size={32} round={true} /> </FacebookShareButton></li>
+                                                            <li className='share-product-icon'>
+                                                                <button type='button' onClick={() => {
+                                                                    navigator.clipboard.writeText(`${setting.setting && setting.setting.web_settings.website_url}/product/${productdata.slug}`);
+                                                                    toast.success("Copied Succesfully!!");
+                                                                }} > <BiLink size={30} /></button>
+                                                            </li>
+                                                        </ul>
+
+                                                    </div>
                                                     {productdata?.indicator ?
                                                         productdata?.indicator == 1 ?
                                                             <div className='d-flex align-items-center mt-3'>
@@ -817,21 +881,39 @@ const ProductDetails = () => {
                                                             <span className='returnDetail'>{t("non-returnable")}</span>
                                                         </div>
                                                     }
-                                                    <div className="share-product-container">
-                                                        <span>{t("share_product")}:</span>
 
-                                                        <ul className='share-product'>
-                                                            <li className='share-product-icon'><WhatsappShareButton url={`${setting.setting && setting.setting.web_settings.website_url}product/${productdata.slug}`}><WhatsappIcon size={32} round={true} /> </WhatsappShareButton></li>
-                                                            <li className='share-product-icon'><TelegramShareButton url={`${setting.setting && setting.setting.web_settings.website_url}product/${productdata.slug}`}><TelegramIcon size={32} round={true} /> </TelegramShareButton></li>
-                                                            <li className='share-product-icon'><FacebookShareButton url={`${setting.setting && setting.setting.web_settings.website_url}product/${productdata.slug}`}><FacebookIcon size={32} round={true} /> </FacebookShareButton></li>
-                                                            <li className='share-product-icon'>
-                                                                <button type='button' onClick={() => {
-                                                                    navigator.clipboard.writeText(`${setting.setting && setting.setting.web_settings.website_url}/product/${productdata.slug}`);
-                                                                    toast.success("Copied Succesfully!!");
-                                                                }} > <BiLink size={30} /></button>
-                                                            </li>
-                                                        </ul>
+                                                    <div className="GrofersPromises__PDPPromiseContainer">
+                                                        <div className="GrofersPromises__PDPPromiseHeader fw-bold mt-4" >
+                                                            Why shop from OG Herbs?
+                                                        </div>
+                                                        <div className="first-row d-flex flex-column">
+                                                            {promisesData.map((promise, index) => (
+                                                                <div className="column m-3" key={index}>
+                                                                    <div className="first-row__icon">
+                                                                        <div className="Imagestyles__ImageContainer">
+                                                                            <img className='imgclass'
+                                                                                src={promise.imgSrc}
+                                                                                alt={promise.altText}
+                                                                                width="56"
+                                                                                height="56"
+                                                                                loading="lazy"
+                                                                                style={{ borderRadius: "0px", objectFit: "fill", cursor: "default" }}
+                                                                            />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="display--table-cell vertical-align--middle">
+                                                                        <div className="first-row__name color-black" >
+                                                                            {promise.title}
+                                                                        </div>
+                                                                        <div className="first-row__description">
+                                                                            {promise.description}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            ))}
+                                                        </div>
                                                     </div>
+                                                  
                                                 </div>
                                             </div>
                                         </div>

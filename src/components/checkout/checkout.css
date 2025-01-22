@@ -1,3 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&family=Poppins:wght@600&display=swap');
+
+.tab-row {
+    font-size: 1.755rem;
+    font-weight: 600;
+}
+
+.cart-heading {
+    color: #444;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 24px;
+}
+
+.cart-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.cart-table-responsive {
+    overflow-x: auto;
+}
+
+.tab-head{
+  color: var(--text-field-color) !important;
+  background: var(--secondary-color-light) !important;
+}
+.cart-table {
+  width: 100%;
+}
+
+.cart-table thead {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bolder;
+    font-size: 20px;
+    color: #666;
+}
+
+.cart-table thead th,
+.cart-table td {
+    border: none;
+    padding: 10px; /* Adjust padding to create even gaps */
+}
+
+.cart-image {
+    width: 60px; /* Adjust width as necessary */
+    height: 60px; /* Maintain aspect ratio */
+}
+
+.cart-cell-image {
+    display: flex;
+    align-items: center; /* Center image vertically */
+}
+
+.cart-bg-blue {
+  font-size: 1.4rem;
+   
+    border-radius: 8px;
+}
+
+/* .cart-bg-blue:hover {
+    background-color: #3e64ff;
+    color: #eee;
+    cursor: pointer;
+} */
+
+.cart-table tbody td:first-child {
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.cart-table tbody td:last-child {
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.cart-spacing-row {
+    height: 10px;
+}
+
+@media(max-width: 575px) {
+    .cart-container {
+        width: 125%;
+        padding: 20px 10px;
+    }
+}
+
 .lottie-content {
   position: absolute;
   top: 0;
@@ -131,6 +218,19 @@
   .order-instruction-body {
   width: 100%;
   height: 200px;
+  background-color: var(--second-cards-color);
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 0px 0px 8px 8px;
+}
+.checkout-container
+  .order-container
+  .order-instructions-wrapper
+  .order-terms-body {
+    font-size: 1.35rem;
+  width: 100%;
+height:350px;
   background-color: var(--second-cards-color);
   display: flex;
   justify-content: center;

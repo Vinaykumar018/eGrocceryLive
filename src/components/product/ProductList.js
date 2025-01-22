@@ -944,7 +944,7 @@ const ProductList2 = React.memo(() => {
                                                                                     <div className='price'>
                                                                                         {filter.grid_view ? <div>
                                                                                             <span id={`price${index}-section`} className="d-flex align-items-center">
-                                                                                                <p id={`fa-rupee${index}`}>
+                                                                                                <p id={`fa-rupee${index}`} >
                                                                                                     {setting.setting && setting.setting.currency}
                                                                                                     {product.variants[0].discounted_price === 0 ?
                                                                                                         product.variants[0].price.toFixed(setting.setting && setting.setting.decimal_point) :
@@ -952,13 +952,13 @@ const ProductList2 = React.memo(() => {
                                                                                                 </p>
                                                                                                 {(product?.variants[0]?.price && (product?.variants[0]?.discounted_price != 0)) && (product?.variants[0]?.price !== product?.variants[0]?.discounted_price) ?
                                                                                                     <span id={`price${index}-section`} className="d-flex align-items-center" >
-                                                                                                        <p id='relatedproduct-fa-rupee' className='fw-normal text-decoration-line-through m-0' style={{ color: "var(--sub-text-color)", fontSize: "14px" }}>{setting.setting && setting.setting.currency}
+                                                                                                        <p id='relatedproduct-fa-rupee' className='price-gaps fw-normal text-decoration-line-through m-0' style={{ color: "var(--sub-text-color)", fontSize: "14px" }}>{setting.setting && setting.setting.currency}
                                                                                                             {product?.variants[0]?.price?.toFixed(setting.setting && setting.setting.decimal_point)}
                                                                                                         </p>
                                                                                                     </span>
                                                                                                     : null}
                                                                                                 {(product?.variants[0]?.price && product?.variants[0]?.discounted_price !== 0 && product?.variants[0]?.price !== product?.variants[0]?.discounted_price) && (
-                                                                                                    <span className="ms-2 text-danger" style={{ fontSize: "1.2rem" }}>
+                                                                                                    <span className="text-danger" style={{ fontSize: "1.2rem" }}>
                                                                                                         ({Math.round(((product.variants[0].price - product.variants[0].discounted_price) / product.variants[0].price) * 100)}% OFF)
                                                                                                     </span>
                                                                                                 )}

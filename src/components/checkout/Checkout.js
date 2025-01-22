@@ -26,9 +26,7 @@ import animate2 from '../../utils/order_success_tick_animation.json';
 //payment methods
 import useRazorpay from 'react-razorpay';
 import { loadStripe } from '@stripe/stripe-js';
-import {
-    Elements,
-} from '@stripe/react-stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
 // import CheckoutForm from './CheckoutForm'
 import InjectCheckout from './StripeModal';
 import PaystackPop from '@paystack/inline-js';
@@ -83,7 +81,7 @@ const Checkout = () => {
     const paypalStatus = useRef(false);
     const [isNetworkError, setIsNetworkError] = useState(false);
     const [orderNote, setOrderNote] = useState("");
-    const [estimatedDays,setEstimatedDays]=useState(7);
+    const [estimatedDays, setEstimatedDays] = useState(7);
 
 
     const stripePromise = loadStripe(setting?.payment_setting && setting?.payment_setting?.stripe_publishable_key);
@@ -126,7 +124,11 @@ const Checkout = () => {
         fetchTimeSlot();
 
     }, []);
+    const handleTermsPage = () => {
+        navigate("/terms")
+        window.scrollTo(0, 0);
 
+    }
     useEffect(() => {
         if (address?.selected_address?.latitude && address?.selected_address?.longitude)
             api.getCart(user?.jwtToken, address?.selected_address?.latitude, address?.selected_address?.longitude, 1)
@@ -180,7 +182,7 @@ const Checkout = () => {
                     }
                     settimeslots(result.data);
                     setEstimatedDays(result.data.delivery_estimate_days)
-                    
+
                     setexpectedTime(result?.data?.time_slots.filter((element) => checkLastOrderTime(element?.last_order_time))[0]);
                 }
             })
@@ -278,6 +280,23 @@ const Checkout = () => {
 
     }, [Razorpay]);
 
+    const [isChecked, setIsChecked] = useState(false);
+    const [showWarning, setShowWarning] = useState(false);
+
+    const handleCheckboxChange = () => {
+        setIsChecked(!isChecked);
+        setShowWarning(false);  // Hide warning when checkbox is toggled
+    };
+
+    // const handlePlaceOrderClick = (e) => {
+    //     if (!isChecked) {
+    //         e.preventDefault();
+    //         setShowWarning(true);
+    //         return;
+    //     }
+    //     HandlePlaceOrder();
+    // };
+
     const initializeRazorpay = () => {
         return new Promise((resolve) => {
             const script = document.createElement("script");
@@ -371,8 +390,17 @@ const Checkout = () => {
     }, [cart?.is_wallet_checked]);
 
     const HandlePlaceOrder = async (e) => {
+
         // e.preventDefault();
         //place order
+
+        if (!isChecked) {
+
+            setShowWarning(true);
+            return 
+
+        }
+
         if (!expectedDate) {
             toast.error(t('please_select_date'));
         }
@@ -767,6 +795,48 @@ const Checkout = () => {
                             )
                             : (
                                 <>
+                                    <div className=" container cart-container rounded mt-5 bg-white p-md-5">
+
+                                        <div className="cart-heading font-weight-bold">Items in Cart</div>
+
+                                        <table className="cart-table table-striped">
+                                            <thead className='tab-head'>
+                                                <tr className='tab-row border-3'>
+                                                    <th scope="col">Image</th>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Price</th>
+                                                    <th scope="col">Quantity</th>
+                                                    <th scope="col">Discount</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {
+                                                    console.log(cart)
+                                                }
+                                                {cart.cart.data.cart.map((item) => (
+                                                    <React.Fragment key={item.product_id}>
+                                                        <tr className="cart-bg-blue">
+                                                            <td className="cart-cell-image">
+                                                                <img
+                                                                    src={item.image_url}
+                                                                    alt={item.name}
+                                                                    className="cart-image rounded-circle"
+                                                                />
+                                                            </td>
+                                                            <td className="cart-item-name">{item.name}</td>
+                                                            <td className="cart-item-price">₹{item.price}</td>
+                                                            <td className="cart-item-quantity">{item.qty}</td>
+                                                            <td className="cart-item-discount">₹{item.discounted_price}</td>
+                                                        </tr>
+
+                                                    </React.Fragment>
+                                                ))}
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+
+
                                     <div className='checkout-container container'>
 
                                         <div className='checkout-util-container col-lg-9'>
@@ -839,11 +909,12 @@ const Checkout = () => {
                                                 </>
                                                 :
                                                 <>
-                                                   
+
                                                 </>}
 
 
                                         </div>
+
 
                                         <div className='order-container'>
                                             {user?.user?.balance > 0 ? <div className="promo-section">
@@ -1001,6 +1072,46 @@ const Checkout = () => {
                                                 </div>
                                             </div>
 
+                                            {/* {disabled terms} */}
+
+                                            {/* <div className='checkout-component order-instructions-wrapper'>
+                                                <div className='heading'>Terms and Conditions</div>
+                                                <div className='order-terms-body d-flex flex-column'> */}
+
+                                            {/* Terms List */}
+                                            {/* <ul style={{ paddingLeft: '10px', marginBottom: '10px', listStyleType: 'disc' }}>
+                                                        <li style={{ marginBottom: '8px' }}>Order Confirmation: Orders may be modified or canceled if needed.</li>
+                                                        <li style={{ marginBottom: '8px' }}>Payment Authorization: You authorize us to charge your payment method.</li>
+                                                        <li style={{ marginBottom: '8px' }}>Shipping and Delivery: Delivery times vary; delays may occur.</li>
+                                                        <li style={{ marginBottom: '8px' }}>Returns: Return items within 30 days in original condition.</li>
+                                                        <li style={{ marginBottom: '8px' }}>Pricing Errors: We may cancel orders due to pricing errors.</li>
+                                                        <li style={{ marginBottom: '8px' }}>Privacy: Your data is secure; we don’t share it with third parties.</li>
+                                                        <li style={{ marginBottom: '8px' }}>Agreement: Placing an order means you accept these terms.</li>
+                                                    </ul> */}
+
+                                            {/* Checkbox and Warning Message */}
+                                            {/* <div style={{ marginTop: '5px' }}>
+                                                        <label style={{ display: 'block' }}>
+                                                            <input
+                                                                type="checkbox"
+                                                                checked={isChecked}
+                                                                onChange={handleCheckboxChange}
+                                                                style={{ marginRight: '8px' }}
+                                                            />
+                                                            <span>I agree to the terms and conditions</span>
+                                                        </label>
+
+                                                        {showWarning && (
+                                                            <p style={{ color: 'red', fontSize: '0.9rem', marginTop: '10px' }}>
+                                                                Please agree to the terms and conditions to place your order.
+                                                            </p>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            </div> */}
+
+
+
                                             <div className='order-summary-wrapper checkout-component'>
 
                                                 <div className="order-bill">
@@ -1066,6 +1177,25 @@ const Checkout = () => {
                                                                         ?
                                                                         <Loader screen='full' background='none' content={"Your transaction is being processed.Please don't refresh the page."} />
                                                                         : <>
+
+                                                                            <div style={{ marginTop: '5px' }}>
+                                                                                <label style={{ display: 'block' }}>
+                                                                                    <input
+                                                                                        type="checkbox"
+                                                                                        checked={isChecked}
+                                                                                        onChange={handleCheckboxChange}
+                                                                                        style={{ marginRight: '5px' }}
+                                                                                    />
+                                                                                    <span>I agree to the <span className='text-danger
+                            ' onClick={(e) => { e.preventDefault(); handleTermsPage(); }} style={{ cursor: "pointer" }}>terms and conditions</span></span>
+                                                                                </label>
+
+                                                                                {showWarning && (
+                                                                                    <p style={{ color: 'red', fontSize: '0.9rem', marginTop: '10px' }}>
+                                                                                        Please agree to the terms and conditions to place your order.
+                                                                                    </p>
+                                                                                )}
+                                                                            </div>
                                                                             {
                                                                                 (setting.payment_setting.cod_payment_method === "1" && codAllow == '1') ||
                                                                                     setting.payment_setting.razorpay_payment_method === "1" ||

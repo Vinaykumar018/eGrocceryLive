@@ -551,3 +551,29 @@ const Cart = ({ isCartSidebarOpen, setIsCartSidebarOpen }) => {
 };
 
 export default Cart;
+
+
+
+// <div className="container my-4">
+// <h2>Items in Cart</h2>
+// <div className="row">
+//   {cart.cart.data.cart.map((item) => (
+//     <div className="col-6 mb-4" key={item.product_id}>
+//       <div className="card">
+//         <img
+//           src={item.image_url}
+//           alt={item.name}
+//           className="card-img-top"
+//           style={{ height: '200px', objectFit: 'cover' }}
+//         />
+//         <div className="card-body">
+//           <h5 className="card-title">{item.name}</h5>
+//           <p className="card-text">Price: ${item.price}</p>
+//           <p className="card-text">Quantity: {item.qty}</p>
+//           <p className="card-text">Discounted Price: ${item.discounted_price}</p>
+//         </div>
+//       </div>
+//     </div>
+//   ))}
+// </div>
+// </div>

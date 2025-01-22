@@ -238,6 +238,8 @@ const Header = () => {
         setIsOpen(!isOpen);
     };
 
+    // console.log(user.user.name.split(" ")[0])
+
     return (
         <>
             {/* sidebar */}
@@ -774,7 +776,7 @@ const Header = () => {
                                                     <div className='d-flex flex-column user-info my-auto text-center'>
                                                         {/* <span className='number'> {t("welcome")}</span> */}
                                                         <span className='name' style={{ color: "var(--font-color)", fontSize: "14px" }}>
-                                                            Profile
+                                                            Hi, {user.user.name.split(" ")[0]}
                                                             {/* {user.user && user.user.name.split(' ')[0].length > 20
                                                                 ? user.user.name.split(' ')[0].substring(0, 20) + "..."
                                                                 : user.user.name.split(' ')[0]} */}

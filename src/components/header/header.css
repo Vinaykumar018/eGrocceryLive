@@ -965,8 +965,9 @@ border-radius: 10% !important;
 
 
 #drop a{
+  font-size: 12px !important;
   padding:5px;
-  font-weight: 600;
+ 
         
   transition: transform 500ms ease-out;
 }

@@ -1149,32 +1149,32 @@ const ProductContainer = React.memo(({ showModal, setShowModal, BelowSectionOffe
                                                                         <SwiperSlide className='product-card swiper-slide-card' style={{ padding: "5px" }}>
 
 
-                                                                        {width < 1024 && 
-    product?.variants[0]?.price &&
-    product?.variants[0]?.discounted_price !== 0 &&
-    product?.variants[0]?.price !== product?.variants[0]?.discounted_price && (
-        <span
-            id="pos"
-            style={{
-                backgroundImage: 'url("https://cdn.zeptonow.com/web-static-assets-prod/artifacts/12.7.2/images/offer-tag.svg")',
-                backgroundSize: "contain",
-                padding: "5px 9px",
-                color: 'white',
-                position: "fixed",
-                top: "0",
-                left: "1%",
-                backgroundRepeat: "no-repeat",
-                zIndex: "1000",
-            }}
-        >
-            <span className='h3'>
-                {Math.round(((product.variants[0].price - product.variants[0].discounted_price) / product.variants[0].price) * 100)}%
-            </span>
-            <br />
-            <span className='h2'>Off</span>
-        </span>
-    )
-}
+                                                                            {width < 1024 &&
+                                                                                product?.variants[0]?.price &&
+                                                                                product?.variants[0]?.discounted_price !== 0 &&
+                                                                                product?.variants[0]?.price !== product?.variants[0]?.discounted_price && (
+                                                                                    <span
+                                                                                        id="pos"
+                                                                                        style={{
+                                                                                            backgroundImage: 'url("https://cdn.zeptonow.com/web-static-assets-prod/artifacts/12.7.2/images/offer-tag.svg")',
+                                                                                            backgroundSize: "contain",
+                                                                                            padding: "5px 9px",
+                                                                                            color: 'white',
+                                                                                            position: "fixed",
+                                                                                            top: "0",
+                                                                                            left: "1%",
+                                                                                            backgroundRepeat: "no-repeat",
+                                                                                            zIndex: "1000",
+                                                                                        }}
+                                                                                    >
+                                                                                        <span className='h3'>
+                                                                                            {Math.round(((product.variants[0].price - product.variants[0].discounted_price) / product.variants[0].price) * 100)}%
+                                                                                        </span>
+                                                                                        <br />
+                                                                                        <span className='h2'>Off</span>
+                                                                                    </span>
+                                                                                )
+                                                                            }
 
 
                                                                             <span className='border border-light rounded-circle' id='aiEye'></span>
